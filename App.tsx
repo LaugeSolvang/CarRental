@@ -1,14 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import Splash from './src/screens/Splash';
+import { NavigationContainer } from '@react-navigation/native';
+import BottomTabNavigator from './src/components/BottomTabNavigator'; 
 
-export default function App() {
+
+const App: React.FC = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 3000);  // hide splash after 3 seconds
+  }, []);
+
+  if (showSplash) {
+    return <Splash />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <NavigationContainer>
+      <BottomTabNavigator />
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
-}
+
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -18,3 +36,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
