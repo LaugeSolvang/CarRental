@@ -2,16 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import bookingsData from '../database/bookings.json'
 
-const data = [
-    {
-      id: '1',
-      car: 'Toyato Camry 2020 4WD',
-      pickup: '12:30 Friday 13. Oct 2023',
-      dropoff: '09:30 Friday 27. Oct 2023',
-      location: 'Odense',
-    },
-    // ... more data entries
-  ];
   
   const Overview = () => {
     return (
