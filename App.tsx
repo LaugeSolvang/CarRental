@@ -12,7 +12,7 @@ const App: React.FC = () => {
   useEffect(() => {
     setTimeout(() => {
       setShowSplash(false);
-    }, 3000);  // hide splash after 3 seconds
+    }, 1000);  // hide splash after 3 seconds
   }, []);
 
   if (showSplash) {
