@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
+
 const CarCard = ({ car }) => {
+
+  const IMAGE_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_IMAGE_PORT}/${car.pictures[0].srcUrl}`;
   return (
     <View style={styles.card}>
-      <Image source={{ uri: car.pictures[0].srcUrl }} style={styles.image} />
+      <Image source={{ uri: IMAGE_URL }} style={styles.image} />
       <Text style={styles.carInfo}>
         {car.name} - {car.brand}
       </Text>

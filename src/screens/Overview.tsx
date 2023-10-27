@@ -1,27 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import bookingsData from '../database/bookings.json'
 
-  
-  const Overview = () => {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.header}>Current rental</Text>
-        <FlatList
-          data={[bookingsData[0]]} // Only showing the first item for current rental
-          renderItem={({ item }) => <RentalCard rental={item} />}
-          keyExtractor={item => item.id}
-        />
-  
-        <Text style={styles.header}>Rentals</Text>
-        <FlatList
-          data={bookingsData.slice(1)} // All other items except the first one
-          renderItem={({ item }) => <RentalCard rental={item} />}
-          keyExtractor={item => item.id}
-        />
-      </View>
-    );
-  };
+const Overview = () => {
+  const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const API_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}`;
+
+  useEffect(() => {
+    fetch(`${API_URL}/bookings`)
+          .then(response => response.json())
+      .then(data => {
+        setBookings(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.header}>Current rental</Text>
+      <FlatList
+        data={bookings.slice(0, 1)} // This ensures only the first item is taken
+        renderItem={({ item }) => <RentalCard rental={item} />}
+        keyExtractor={item => item.id}
+      />
+
+      <Text style={styles.header}>Rentals</Text>
+      <FlatList
+        data={bookings.slice(1)}
+        renderItem={({ item }) => <RentalCard rental={item} />}
+        keyExtractor={item => item.id}
+      />
+    </View>
+  );
+};
 
 const RentalCard = ({ rental }) => {
   return (

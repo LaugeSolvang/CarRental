@@ -6,10 +6,12 @@ const Home = () => {
   const [popularCars, setLocalCars] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const API_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}`;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://themikkel.dk/unfollow/sdu/cars/cars');
+        const response = await fetch(`${API_URL}/cars`);
         const data = await response.json();
         
         setCars(data);
