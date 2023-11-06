@@ -11,7 +11,7 @@ const CarCard = ({ car }) => {
       <Text style={styles.carInfo}>
         {car.name} - {car.brand}
       </Text>
-      <Text>{car.description}</Text>
+      <Text style={styles.description}>{car.description}</Text>
     </View>
   );
 };
@@ -28,12 +28,12 @@ const LoadingCard = () => (
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#FFFFFF',
-    padding: 15,
     borderRadius: 10,
     marginVertical: 5,
     alignItems: 'stretch', 
-    width: 300,
-    marginRight: 15,
+    width: 250,
+    marginRight: 0,
+    marginHorizontal: 8, 
   },
   image: {
     width: '100%',
@@ -41,9 +41,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   carInfo: {
+    padding: 4,
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 10,
+  },
+  description: {
+    padding: 4,
+    fontSize: 14,
+    color: '#666',
   },
   loadingCard: {
     paddingHorizontal: 15,

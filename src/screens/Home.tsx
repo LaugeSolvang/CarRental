@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { CarCard, LoadingCard } from '../components/CarCard';
+import {theme} from '../theme/theme.js';
+
 const Home = () => {
   const [cars, setCars] = useState([]);
   const [popularCars, setLocalCars] = useState([]);
@@ -30,12 +32,12 @@ const Home = () => {
   if (loading) {
     return (
       <ScrollView style={styles.container}>
-        <Text style={styles.header}>Local Cars</Text>
+        <Text style={theme.styles.header}>Local Cars</Text>
         <LoadingCard />
         <LoadingCard />
         <LoadingCard />
 
-        <Text style={styles.header}>Popular Choices</Text>
+        <Text style={theme.styles.header}>Popular Choices</Text>
         <LoadingCard />
         <LoadingCard />
         <LoadingCard />
@@ -45,8 +47,8 @@ const Home = () => {
 
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.header}>Local Cars</Text>
+    <ScrollView>
+      <Text style={theme.styles.header}>Local Cars</Text>
       <FlatList
         data={cars}
         horizontal={true}
@@ -55,7 +57,7 @@ const Home = () => {
         showsHorizontalScrollIndicator={false}
       />
 
-      <Text style={styles.header}>Popular Choices</Text>
+      <Text style={theme.styles.header}>Popular Choices</Text>
       <FlatList
         data={popularCars}
         horizontal={true}
@@ -64,7 +66,7 @@ const Home = () => {
         showsHorizontalScrollIndicator={false}
       />
 
-      <Text style={styles.header}>Deals and Offers</Text>
+      <Text style={theme.styles.header}>Deals and Offers</Text>
       <Text style={styles.dealText}>
         Deal 1: Get a 10% discount on your first car booking with us.
       </Text>
@@ -86,16 +88,7 @@ const Home = () => {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    backgroundColor: '#F4F4F4',
-  },
-  header: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
+
   
   dealText: {
     marginVertical: 10,
