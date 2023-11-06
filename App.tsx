@@ -1,40 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import Splash from './src/screens/Splash';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Splash from './src/screens/Splash';
+import Landing from './src/screens/Landing';
+import Login from './src/screens/Login';
+import SignUp from './src/screens/SignUp';
 import BottomTabNavigator from './src/components/BottomTabNavigator'; 
 
+const Stack = createStackNavigator();
 
 const App: React.FC = () => {
-  const [showSplash, setShowSplash] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
-      setShowSplash(false);
-    }, 1000);  // hide splash after 3 seconds
+      setIsReady(true);
+    }, 3000); // splash screen duration
   }, []);
 
-  if (showSplash) {
+  if (!isReady) {
     return <Splash />;
   }
 
   return (
     <NavigationContainer>
-      <BottomTabNavigator />
+      <Stack.Navigator initialRouteName="Landing" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Landing" component={Landing} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Main" component={BottomTabNavigator} />
+      </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
   );
-
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;

@@ -12,7 +12,9 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator: React.FC = () => {
   return (
     <Tab.Navigator
+    initialRouteName="Home" // Set the initial route to Home
       screenOptions={({ route }) => ({
+        
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === 'Overview') return <Image source={require('../../assets/icons/Overview.png')} />;
           if (route.name === 'Search') return <Image source={require('../../assets/icons/Search.png')} />;

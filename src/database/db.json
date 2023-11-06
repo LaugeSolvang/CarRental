@@ -1,143 +1,180 @@
 {
-    "bookings": [
-        {
-          "id": "1",
-          "car": "Toyato Camry 2020 4WD",
-          "pickup": "12:30 Friday 13. Oct 2023",
-          "dropoff": "09:30 Friday 27. Oct 2023",
-          "location": "Odense"
-        },
-        {
-            "id": "2",
-            "car": "Ford",
-            "pickup": "12:30 Friday 13. Oct 2023",
-            "dropoff": "09:30 Friday 27. Oct 2023",
-            "location": "Odense"
-          }
-      ],
-      "cars": [
-      {
-          "id": 1,
-          "engine": {
-              "id": 1,
-              "horsePower": 100,
-              "cylinders": 8,
-              "volume": 1000,
-              "maxRPM": 8000,
-              "created_at": "2023-10-06T12:00:00.000Z",
-              "updated_at": "2023-10-06T12:00:00.000Z"
-          },
-          "name": "Demo car",
-          "pictures": [
-              {
-                  "id": 1,
-                  "srcUrl": "_145748e3-eab5-4eb6-a66e-cff030110f6c.jfif",
-                  "alt": "Nice image",
-                  "created_at": "2023-10-06T12:00:00.000Z",
-                  "updated_at": "2023-10-06T12:00:00.000Z"
-              }
-          ],
-          "location": {
-              "id": 1,
-              "name": "Odense",
-              "address": "SDU",
-              "created_at": "2023-10-06T12:00:00.000Z",
-              "updated_at": "2023-10-06T12:00:00.000Z"
-          },
-          "brand": "Ferrari",
-          "weight": 1000,
-          "acceleration": 3.21,
-          "wheelCount": 4,
-          "description": "Demo car description",
-          "type": "Sedan",
-          "price": 5000,
-          "doorCount": 3,
-          "manufacturingYear": 2023,
-          "topSpeed": 1,
-          "created_at": "2023-10-06T12:00:00.000Z",
-          "updated_at": "2023-10-06T12:00:00.000Z"
-      },
-      {
-          "id": 2,
-          "engine": {
-              "id": 2,
-              "horsePower": 200,
-              "cylinders": 6,
-              "volume": 10000,
-              "maxRPM": 8000,
-              "created_at": "2023-10-06T12:00:00.000Z",
-              "updated_at": "2023-10-06T12:00:00.000Z"
-          },
-          "name": "Demo car 2",
-          "pictures": [
-              {
-                  "id": 2,
-                  "srcUrl": "_b1a9360d-7688-43b4-b132-68ee1f0ba190.jfif",
-                  "alt": "Nice image og place",
-                  "created_at": "2023-10-06T12:00:00.000Z",
-                  "updated_at": "2023-10-06T12:00:00.000Z"
-              }
-          ],
-          "location": {
-              "id": 1,
-              "name": "Odense",
-              "address": "SDU",
-              "created_at": "2023-10-06T12:00:00.000Z",
-              "updated_at": "2023-10-06T12:00:00.000Z"
-          },
-          "brand": "Rolls Royce",
-          "weight": 2000,
-          "acceleration": 2.21,
-          "wheelCount": 2,
-          "description": "Demo car description for a motocycle",
-          "type": "SUV",
-          "price": 10000,
-          "doorCount": 0,
-          "manufacturingYear": 2023,
-          "topSpeed": 100,
-          "created_at": "2023-10-06T12:00:00.000Z",
-          "updated_at": "2023-10-06T12:00:00.000Z"
-      },
-      {
-          "id": 3,
-          "engine": {
-              "id": 3,
-              "horsePower": 250,
-              "cylinders": 6,
-              "volume": 1200,
-              "maxRPM": 7500,
-              "created_at": "2023-10-06T12:00:00.000Z",
-              "updated_at": "2023-10-06T12:00:00.000Z"
-          },
-          "name": "Demo car 3",
-          "pictures": [
-              {
-                  "id": 3,
-                  "srcUrl": "_ca6150f6-6250-48f3-a90c-c9cb04f7dcf3.jfif",
-                  "alt": "Car Image 3",
-                  "created_at": "2023-10-06T12:00:00.000Z",
-                  "updated_at": "2023-10-06T12:00:00.000Z"
-              }
-          ],
-          "location": {
-              "id": 3,
-              "name": "Aarhus",
-              "address": "Banegården",
-              "created_at": "2023-10-06T12:00:00.000Z",
-              "updated_at": "2023-10-06T12:00:00.000Z"
-          },
-          "brand": "Tesla",
-          "weight": 1500,
-          "acceleration": 2.5,
-          "wheelCount": 4,
-          "description": "Eco-friendly electric car",
-          "type": "Electric",
-          "price": 5500,
-          "doorCount": 4,
-          "manufacturingYear": 2023,
-          "topSpeed": 150,
-          "created_at": "2023-10-06T12:00:00.000Z",
-          "updated_at": "2023-10-06T12:00:00.000Z"
-      }
-    ]
+  "bookings": [
+    {
+      "id": "1",
+      "car": "Toyato Camry 2020 4WD",
+      "pickup": "12:30 Friday 13. Oct 2023",
+      "dropoff": "09:30 Friday 27. Oct 2023",
+      "location": "Odense"
+    },
+    {
+      "id": "2",
+      "car": "Ford",
+      "pickup": "12:30 Friday 13. Oct 2023",
+      "dropoff": "09:30 Friday 27. Oct 2023",
+      "location": "Odense"
     }
+  ],
+  "cars": [
+    {
+      "id": 1,
+      "engine": {
+        "id": 1,
+        "horsePower": 100,
+        "cylinders": 8,
+        "volume": 1000,
+        "maxRPM": 8000,
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "name": "Demo car",
+      "pictures": [
+        {
+          "id": 1,
+          "srcUrl": "_145748e3-eab5-4eb6-a66e-cff030110f6c.jfif",
+          "alt": "Nice image",
+          "created_at": "2023-10-06T12:00:00.000Z",
+          "updated_at": "2023-10-06T12:00:00.000Z"
+        }
+      ],
+      "location": {
+        "id": 1,
+        "name": "Odense",
+        "address": "SDU",
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "brand": "Ferrari",
+      "weight": 1000,
+      "acceleration": 3.21,
+      "wheelCount": 4,
+      "description": "Demo car description",
+      "type": "Sedan",
+      "price": 5000,
+      "doorCount": 3,
+      "manufacturingYear": 2023,
+      "topSpeed": 1,
+      "created_at": "2023-10-06T12:00:00.000Z",
+      "updated_at": "2023-10-06T12:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "engine": {
+        "id": 2,
+        "horsePower": 200,
+        "cylinders": 6,
+        "volume": 10000,
+        "maxRPM": 8000,
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "name": "Demo car 2",
+      "pictures": [
+        {
+          "id": 2,
+          "srcUrl": "_b1a9360d-7688-43b4-b132-68ee1f0ba190.jfif",
+          "alt": "Nice image og place",
+          "created_at": "2023-10-06T12:00:00.000Z",
+          "updated_at": "2023-10-06T12:00:00.000Z"
+        }
+      ],
+      "location": {
+        "id": 1,
+        "name": "Odense",
+        "address": "SDU",
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "brand": "Rolls Royce",
+      "weight": 2000,
+      "acceleration": 2.21,
+      "wheelCount": 2,
+      "description": "Demo car description for a motocycle",
+      "type": "SUV",
+      "price": 10000,
+      "doorCount": 0,
+      "manufacturingYear": 2023,
+      "topSpeed": 100,
+      "created_at": "2023-10-06T12:00:00.000Z",
+      "updated_at": "2023-10-06T12:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "engine": {
+        "id": 3,
+        "horsePower": 250,
+        "cylinders": 6,
+        "volume": 1200,
+        "maxRPM": 7500,
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "name": "Demo car 3",
+      "pictures": [
+        {
+          "id": 3,
+          "srcUrl": "_ca6150f6-6250-48f3-a90c-c9cb04f7dcf3.jfif",
+          "alt": "Car Image 3",
+          "created_at": "2023-10-06T12:00:00.000Z",
+          "updated_at": "2023-10-06T12:00:00.000Z"
+        }
+      ],
+      "location": {
+        "id": 3,
+        "name": "Aarhus",
+        "address": "Banegården",
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "brand": "Tesla",
+      "weight": 1500,
+      "acceleration": 2.5,
+      "wheelCount": 4,
+      "description": "Eco-friendly electric car",
+      "type": "Electric",
+      "price": 5500,
+      "doorCount": 4,
+      "manufacturingYear": 2023,
+      "topSpeed": 150,
+      "created_at": "2023-10-06T12:00:00.000Z",
+      "updated_at": "2023-10-06T12:00:00.000Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com"
+    },
+    {
+      "email": "hjkht",
+      "password": "Hlbryikg",
+      "id": 4
+    },
+    {
+      "email": "hjkht",
+      "password": "Hlbryikg",
+      "id": 5
+    },
+    {
+      "email": "gjnvfg",
+      "password": "Fiijgrt",
+      "id": 6
+    },
+    {
+      "email": "ofoenf",
+      "password": "Neigieo",
+      "id": 7
+    }
+  ]
+}
