@@ -1,17 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
+import BookingCard from '../components/BookingCard';
+import {theme} from '../theme/theme.js';
+
 
 const Overview = () => {
-  const [bookings, setBookings] = useState([]);
+  const [bookings, setBookings] = useState({
+    currentRentals: [],
+    futureRentals: [],
+    pastRentals: []
+  });
   const [loading, setLoading] = useState(true);
 
   const API_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}`;
 
+  const renderContent = ({ item }) => {
+    if (item.title) {
+      return <Text style={theme.styles.header}>{item.title}</Text>;
+    } else {
+      return <BookingCard booking={item} />;
+    }
+  };
+  
+  const categorizeBookings = (bookings) => {
+    const now = new Date();
+    let currentRentals = [];
+    let futureRentals = [];
+    let pastRentals = [];
+  
+    bookings.forEach(booking => {
+      const pickupDate = new Date(booking.startDate);
+      const dropoffDate = new Date(booking.endDate);
+      if (pickupDate <= now && dropoffDate >= now) {
+        currentRentals.push(booking);
+      } else if (pickupDate > now) {
+        futureRentals.push(booking);
+      } else {
+        pastRentals.push(booking);
+      }
+    });
+  
+    // Sorting each array if needed, e.g., by date
+    currentRentals.sort((a, b) => new Date(a.pickup) - new Date(b.pickup));
+    futureRentals.sort((a, b) => new Date(a.pickup) - new Date(b.pickup));
+    pastRentals.sort((a, b) => new Date(b.dropoff) - new Date(a.dropoff));
+  
+    return { currentRentals, futureRentals, pastRentals };
+  };
+  
   useEffect(() => {
     fetch(`${API_URL}/bookings`)
-          .then(response => response.json())
+      .then(response => response.json())
       .then(data => {
-        setBookings(data);
+        const { currentRentals, futureRentals, pastRentals } = categorizeBookings(data);
+        setBookings({ currentRentals, futureRentals, pastRentals });
         setLoading(false);
       })
       .catch(error => {
@@ -19,59 +61,27 @@ const Overview = () => {
         setLoading(false);
       });
   }, []);
+  
 
   if (loading) {
     return <Text>Loading...</Text>;
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Current rental</Text>
-      <FlatList
-        data={bookings.slice(0, 1)} // This ensures only the first item is taken
-        renderItem={({ item }) => <RentalCard rental={item} />}
-        keyExtractor={item => item.id}
-      />
-
-      <Text style={styles.header}>Rentals</Text>
-      <FlatList
-        data={bookings.slice(1)}
-        renderItem={({ item }) => <RentalCard rental={item} />}
-        keyExtractor={item => item.id}
-      />
-    </View>
+    <FlatList
+      data={[
+        { id: 'header-current', title: 'Current Rentals' },
+        ...bookings.currentRentals,
+        { id: 'header-future', title: 'Future Rentals' },
+        ...bookings.futureRentals,
+        { id: 'header-past', title: 'Past Rentals' },
+        ...bookings.pastRentals,
+      ]}
+      renderItem={renderContent}
+      keyExtractor={item => item.id.toString()}
+      ListFooterComponent={<View style={{ paddingBottom: 20 }} />} // Add some padding at the bottom if needed
+    />
   );
 };
-
-const RentalCard = ({ rental }) => {
-  return (
-    <View style={styles.card}>
-      <Text>{rental.car}</Text>
-      <Text>{rental.pickup}</Text>
-      <Text>{rental.location}</Text>
-      <Text>{rental.dropoff}</Text>
-      <Text>{rental.location}</Text>
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#F4F4F4',
-  },
-  header: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
-  card: {
-    backgroundColor: '#FFFFFF',
-    padding: 15,
-    borderRadius: 10,
-    marginVertical: 5,
-  },
-});
 
 export default Overview;

@@ -47,7 +47,11 @@ export const theme = {
         fontWeight: 'bold',
         marginBottom: 20,
       },
-  
+      header: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        margin: 8,
+      },
       // Add other common styles here
     },
   };
