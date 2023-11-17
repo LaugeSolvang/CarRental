@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text, View, Image} from 'react-native';
+import { Image} from 'react-native';
 import Home from '../screens/Home';
 import Overview from '../screens/Overview';
 import Settings from '../screens/Settings';

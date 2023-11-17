@@ -1,11 +1,12 @@
 // theme.js
 export const theme = {
     colors: {
-      primary: '#0000FF', // Blue color for button backgrounds and other elements
+      primary: '#800080', // Changed to purple for primary elements
       textPrimary: '#fff', // White color for text on primary buttons
       textSecondary: '#a9a9a9', // Light gray color for secondary text
       buttonBorder: '#0000FF', // Blue color for button borders
       separator: 'lightgray', // Color for separators
+      action: '#0000FF',
     },
     styles: {
       container: {
@@ -36,7 +37,7 @@ export const theme = {
         borderRadius: 5,
         alignItems: 'center',
         marginBottom: 10,
-        backgroundColor: '#0000FF', // Blue color for the button background
+        backgroundColor: '#5D3FD3', // Changed to purple
       },
       buttonText: {
         color: '#fff',

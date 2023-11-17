@@ -9,7 +9,7 @@ const NavigationPrompt = ({ navigation, promptText, actionText, targetScreen }) 
         {promptText}{' '}
       </Text>
       <TouchableOpacity onPress={() => navigation.navigate(targetScreen)}>
-        <Text style={{ color: theme.colors.primary }}>
+        <Text style={{ color: theme.colors.action }}>
           {actionText}
         </Text>
       </TouchableOpacity>
