@@ -4,7 +4,8 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 
 const CarCard = ({ car }) => {
 
-  const IMAGE_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_IMAGE_PORT}/${car.pictures[0].srcUrl}`;
+  const IMAGE_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_IMAGE_PORT}/assets/images/${car.pictures[0].srcUrl}`;
+
   return (
     <View style={styles.card}>
       <Image source={{ uri: IMAGE_URL }} style={styles.image} />
