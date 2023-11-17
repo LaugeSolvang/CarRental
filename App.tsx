@@ -7,6 +7,8 @@ import Landing from './src/screens/Landing';
 import Login from './src/screens/Login';
 import SignUp from './src/screens/SignUp';
 import BottomTabNavigator from './src/components/BottomTabNavigator'; 
+import Booking from './src/screens/Booking'
+import Details from './src/screens/Details'
 
 const Stack = createStackNavigator();
 
@@ -30,6 +32,8 @@ const App: React.FC = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Main" component={BottomTabNavigator} />
+        <Stack.Screen name="Booking" component={Booking} />
+        <Stack.Screen name="Details" component={Details} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
