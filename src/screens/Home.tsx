@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { CarCard, LoadingCard } from '../components/CarCard';
 import {theme} from '../theme/theme.js';
+import Details from './Details';
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [cars, setCars] = useState([]);
   const [popularCars, setLocalCars] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,6 +31,10 @@ const Home = () => {
     fetchData();
   }, []);
 
+  const handleCardPress = (car) => {
+    navigation.navigate(Details, { carId: car.id });
+  };
+
   if (loading) {
     return (
       <ScrollView style={styles.container}>
@@ -53,7 +58,7 @@ const Home = () => {
       <FlatList
         data={cars}
         horizontal={true}
-        renderItem={({ item }) => <CarCard car={item} />}
+        renderItem={({ item }) => <CarCard car={item} onPress={() => handleCardPress(item)} />}
         keyExtractor={item => item.id.toString()}
         showsHorizontalScrollIndicator={false}
       />
