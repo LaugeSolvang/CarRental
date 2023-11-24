@@ -95,78 +95,24 @@
       "startDate": "2023-10-13T12:30:00Z",
       "endDate": "2024-11-27T09:30:00Z",
       "location": "Odense"
-    },
+    }
+  ],
+  "bookingstest": [
     {
       "returnToSameLocation": false,
-      "startDate": "2023-11-24T11:26:32.011Z",
-      "endDate": "2023-11-24T11:26:32.011Z",
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
       "isDriverAgeSlider": false,
       "purpose": "",
-      "id": "x2qt6WT"
+      "id": 1
     },
     {
       "returnToSameLocation": false,
-      "startDate": "2023-11-24T11:26:32.011Z",
-      "endDate": "2023-11-24T11:26:32.011Z",
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
       "isDriverAgeSlider": false,
       "purpose": "",
-      "id": "wDZL1iY"
-    },
-    {
-      "returnToSameLocation": false,
-      "startDate": "2023-11-24T11:26:32.011Z",
-      "endDate": "2023-11-24T11:26:32.011Z",
-      "isDriverAgeSlider": false,
-      "purpose": "Business",
-      "id": "4_6iWwb"
-    },
-    {
-      "returnToSameLocation": false,
-      "startDate": "2023-11-24T11:26:32.011Z",
-      "endDate": "2023-11-24T11:26:32.011Z",
-      "isDriverAgeSlider": false,
-      "purpose": "Business",
-      "id": "HfoB1ij"
-    },
-    {
-      "returnToSameLocation": false,
-      "startDate": "2023-11-24T11:26:32.011Z",
-      "endDate": "2023-11-24T11:26:32.011Z",
-      "isDriverAgeSlider": false,
-      "purpose": "Personal",
-      "id": "yFn3um3"
-    },
-    {
-      "returnToSameLocation": false,
-      "startDate": "2023-11-24T11:26:32.011Z",
-      "endDate": "2023-11-24T11:26:32.011Z",
-      "isDriverAgeSlider": false,
-      "purpose": "Business",
-      "id": "UwQIKY4"
-    },
-    {
-      "returnToSameLocation": true,
-      "startDate": "2023-11-24T11:26:32.011Z",
-      "endDate": "2023-11-24T11:26:32.011Z",
-      "isDriverAgeSlider": true,
-      "purpose": "Business",
-      "id": "yayrqO6"
-    },
-    {
-      "returnToSameLocation": false,
-      "startDate": "2023-11-24T11:43:16.797Z",
-      "endDate": "2023-11-24T11:43:16.797Z",
-      "isDriverAgeSlider": false,
-      "purpose": "",
-      "id": "wbPUQki"
-    },
-    {
-      "returnToSameLocation": false,
-      "startDate": "2023-11-24T11:46:24.686Z",
-      "endDate": "2023-11-24T11:46:24.686Z",
-      "isDriverAgeSlider": false,
-      "purpose": "",
-      "id": "UV3e_EP"
+      "id": 2
     }
   ],
   "cars": [
