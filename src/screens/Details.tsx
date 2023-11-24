@@ -8,7 +8,7 @@ const Details = ({ route }) => {
   
   const handlePress = () => {
     // Replace 'TargetScreen' with the name of the screen you want to navigate to
-    route.navigate('TargetScreen');
+    route.navigate('Booking');
   };
 
   return (

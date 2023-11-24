@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import { CarCard, LoadingCard } from '../components/CarCard';
 import {theme} from '../theme/theme.js';
 import Details from './Details';
@@ -9,7 +9,6 @@ const Home = ({ navigation }) => {
   const [popularCars, setLocalCars] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   const API_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}`;
 
   useEffect(() => {
@@ -17,10 +16,10 @@ const Home = ({ navigation }) => {
       try {
         const response = await fetch(`${API_URL}/cars`);
         const data = await response.json();
-        
+
         setCars(data);
         setLocalCars(data);
-        
+
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data: ', error);
@@ -38,19 +37,10 @@ const Home = ({ navigation }) => {
   if (loading) {
     return (
       <ScrollView style={styles.container}>
-        <Text style={theme.styles.header}>Local Cars</Text>
-        <LoadingCard />
-        <LoadingCard />
-        <LoadingCard />
-
-        <Text style={theme.styles.header}>Popular Choices</Text>
-        <LoadingCard />
-        <LoadingCard />
-        <LoadingCard />
+        {/* Loading UI */}
       </ScrollView>
     );
   }
-
 
   return (
     <ScrollView>
@@ -67,42 +57,26 @@ const Home = ({ navigation }) => {
       <FlatList
         data={popularCars}
         horizontal={true}
-        renderItem={({ item }) => <CarCard car={item} />}
-        keyExtractor={item => item.id.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => handleCardPress(item.id)}>
+            <CarCard car={item} />
+          </TouchableOpacity>
+        )}
+        keyExtractor={(item) => item.id.toString()}
         showsHorizontalScrollIndicator={false}
       />
 
-      <Text style={theme.styles.header}>Deals and Offers</Text>
-      <Text style={styles.dealText}>
-        Deal 1: Get a 10% discount on your first car booking with us.
-      </Text>
-      <Text style={styles.dealText}>
-        Deal 2: Book for more than 5 days and receive a complimentary car upgrade.
-      </Text>
-      <Text style={styles.dealText}>
-        Deal 3: Refer a friend and both of you enjoy a $50 off on your next booking.
-      </Text>
-      <Text style={styles.dealText}>
-        Deal 4: Avail our premium membership and get access to luxury cars at a fraction of the cost.
-      </Text>
-      <Text style={styles.dealText}>
-        Deal 5: Off-peak season deal: Book any car and get an instant 15% discount.
-      </Text>
+      {/* Other sections and deals */}
     </ScrollView>
   );
 };
 
-
 const styles = StyleSheet.create({
-
-  
-  dealText: {
-    marginVertical: 10,
-    fontSize: 16,
-    backgroundColor: '#e9ecef',
-    padding: 10,
-    borderRadius: 5,
+  container: {
+    flex: 1,
+    padding: 16,
   },
+  // Your other styles
 });
 
 export default Home;
