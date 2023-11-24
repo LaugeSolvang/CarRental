@@ -32,7 +32,7 @@ const Home = ({ navigation }) => {
   }, []);
 
   const handleCardPress = (car) => {
-    navigation.navigate(Details, { carId: car.id });
+    navigation.navigate('Details', { car: car });
   };
 
   if (loading) {
