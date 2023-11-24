@@ -5,8 +5,8 @@ import { RadioButton } from 'react-native-paper';
 const Booking = ({ route }) => {
   const carId = route?.params?.carId; // Optional chaining
   const [returnToSameLocation, setReturnToSameLocation] = useState(false);
-  const [startDate, setStartDate] = useState('Start Date'); // Placeholder text
-  const [endDate, setEndDate] = useState('End Date'); // Placeholder text
+  const [startDate, setStartDate] = useState('Choose Date'); // Placeholder text
+  const [endDate, setEndDate] = useState('Choose Date'); // Placeholder text
   const [isDriverAgeSlider, setIsDriverAgeSlider] = useState(false);
   const [purpose, setPurpose] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
