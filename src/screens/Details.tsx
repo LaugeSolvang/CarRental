@@ -1,28 +1,30 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
-import { CarCard } from '../components/CarCard';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 const Details = ({ route }) => {
     const car = route.params ? route.params.car : null;
 
   const IMAGE_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_IMAGE_PORT}/assets/images/${car.pictures[0].srcUrl}`;
+  
+  const handlePress = () => {
+    // Replace 'TargetScreen' with the name of the screen you want to navigate to
+    route.navigate('TargetScreen');
+  };
 
   return (
     <View style={styles.details}>
         {/*<Image source={{ uri: IMAGE_URL }} style={styles.image} defaultSource={require('path-to-placeholder-image')} />*/}
         <Text style={styles.carInfo}>{car.name} - {car.brand}</Text>
         <Text style={styles.description}>{car.description}</Text>
-        {/* Additional details can be added here */}
-        {/* <CarCard car={car} /> */}
+        <TouchableOpacity style={styles.button} onPress={handlePress}>
+                <Text style={styles.buttonText}>Go to Target Page</Text>
+            </TouchableOpacity>
     </View>
 );
 };
 const styles = StyleSheet.create({
     details: {
-        backgroundColor: '#F0F0F0', // Updated background color
-        borderRadius: 10,
         marginVertical: 10,
-        alignItems: 'center',
         width: '90%',
         marginRight: 0,
         marginHorizontal: 20,
@@ -49,6 +51,26 @@ const styles = StyleSheet.create({
         padding: 8,
         fontSize: 16,
         color: '#555555', // Slightly darker color for description
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    button: {
+        backgroundColor: '#007bff', // Bootstrap primary blue
+        padding: 15,
+        borderRadius: 5,
+        elevation: 3, // Adds shadow for Android
+        shadowColor: '#000', // Adds shadow for iOS
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        shadowOffset: { width: 0, height: 2 },
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 });
 
