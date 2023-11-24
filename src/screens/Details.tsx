@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-const Details = ({ route }) => {
+const Details = ({ route, navigation }) => {
     const car = route.params ? route.params.car : null;
 
   const IMAGE_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_IMAGE_PORT}/assets/images/${car.pictures[0].srcUrl}`;
   
   const handlePress = () => {
     // Replace 'TargetScreen' with the name of the screen you want to navigate to
-    route.navigate('Booking');
+    navigation.navigate('Booking');
   };
 
   return (
@@ -17,7 +17,7 @@ const Details = ({ route }) => {
         <Text style={styles.carInfo}>{car.name} - {car.brand}</Text>
         <Text style={styles.description}>{car.description}</Text>
         <TouchableOpacity style={styles.button} onPress={handlePress}>
-                <Text style={styles.buttonText}>Go to Target Page</Text>
+                <Text style={styles.buttonText}>Book Car</Text>
             </TouchableOpacity>
     </View>
 );
