@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Switch, StyleSheet, TouchableOpacity, Button, Modal } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { RadioButton } from 'react-native-paper'; // Import RadioButton component
+import React, { useState } from 'react';
+import { View, Text, Switch, StyleSheet, Button, Modal } from 'react-native';
+import { RadioButton } from 'react-native-paper';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Booking = ({ route }) => {
   const carId = route?.params?.carId; // Optional chaining
@@ -9,14 +9,35 @@ const Booking = ({ route }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [isDriverAgeSlider, setIsDriverAgeSlider] = useState(false);
-  const [purpose, setPurpose] = useState(''); // Updated to use a single state for purpose
+  const [purpose, setPurpose] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const navigation = useNavigation();
+  const handleConfirmBooking = async () => {
+    try {
+      // Make a POST request to your backend API to add the booking
+      const response = await fetch(`${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}/bookings`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          returnToSameLocation,
+          startDate,
+          endDate,
+          isDriverAgeSlider,
+          purpose,
+          carId,
+        }),
+      });
 
-  const handleConfirmBooking = () => {
-    setModalVisible(true);
-    // Additional logic for confirming the booking
+      if (response.ok) {
+        setModalVisible(true);
+      } else {
+        console.error('Booking failed:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Error confirming booking:', error);
+    }
   };
 
   const handleModalClose = () => {
@@ -35,16 +56,26 @@ const Booking = ({ route }) => {
 
       <View style={styles.row}>
         <Text>Start Date</Text>
-        <TouchableOpacity onPress={() => {/* Placeholder action */}}>
-          <Text>Choose Date</Text>
-        </TouchableOpacity>
+        <DateTimePicker
+          value={startDate}
+          mode="date"
+          display="default"
+          onChange={(event, selectedDate) => {
+            setStartDate(selectedDate || startDate);
+          }}
+        />
       </View>
 
       <View style={styles.row}>
         <Text>End Date</Text>
-        <TouchableOpacity onPress={() => {/* Placeholder action */}}>
-          <Text>Choose Date</Text>
-        </TouchableOpacity>
+        <DateTimePicker
+          value={endDate}
+          mode="date"
+          display="default"
+          onChange={(event, selectedDate) => {
+            setEndDate(selectedDate || endDate);
+          }}
+        />
       </View>
 
       <View style={styles.row}>
