@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
 const BookingCard = ({ booking }) => {
-  const IMAGE_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_IMAGE_PORT}/assets/images/${booking.pictures[0].srcUrl}`;
+  const IMAGE_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_IMAGE_PORT}/${booking.pictures[0].srcUrl}`;
 
   const dateTimeOptions = {
     year: 'numeric', 
