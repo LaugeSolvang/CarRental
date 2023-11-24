@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet, Button, Modal } from 'react-native';
 import { RadioButton } from 'react-native-paper';
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Booking = ({ route }) => {
   const carId = route?.params?.carId; // Optional chaining
   const [returnToSameLocation, setReturnToSameLocation] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState('Start Date'); // Placeholder text
+  const [endDate, setEndDate] = useState('End Date'); // Placeholder text
   const [isDriverAgeSlider, setIsDriverAgeSlider] = useState(false);
   const [purpose, setPurpose] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
@@ -55,27 +54,11 @@ const Booking = ({ route }) => {
       </View>
 
       <View style={styles.row}>
-        <Text>Start Date</Text>
-        <DateTimePicker
-          value={startDate}
-          mode="date"
-          display="default"
-          onChange={(event, selectedDate) => {
-            setStartDate(selectedDate || startDate);
-          }}
-        />
+        <Text>Start Date: {startDate}</Text>
       </View>
 
       <View style={styles.row}>
-        <Text>End Date</Text>
-        <DateTimePicker
-          value={endDate}
-          mode="date"
-          display="default"
-          onChange={(event, selectedDate) => {
-            setEndDate(selectedDate || endDate);
-          }}
-        />
+        <Text>End Date: {endDate}</Text>
       </View>
 
       <View style={styles.row}>
