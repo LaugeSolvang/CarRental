@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import BookingCard from '../components/BookingCard';
 import {theme} from '../theme/theme.js';
+import Config from '../config.js'
 
 
 const Overview = () => {
@@ -11,8 +12,6 @@ const Overview = () => {
     pastRentals: []
   });
   const [loading, setLoading] = useState(true);
-
-  const API_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}`;
 
   const renderContent = ({ item }) => {
     if (item.title) {
@@ -49,7 +48,7 @@ const Overview = () => {
   };
   
   useEffect(() => {
-    fetch(`${API_URL}/bookings`)
+    fetch(`${Config.API}/bookings`)
       .then(response => response.json())
       .then(data => {
         const { currentRentals, futureRentals, pastRentals } = categorizeBookings(data);

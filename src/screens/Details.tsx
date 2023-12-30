@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import Config from '../config.js'
+
 
 const Details = ({ route, navigation }) => {
     const car = route.params ? route.params.car : null;
 
-  const IMAGE_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_IMAGE_PORT}/assets/images/${car.pictures[0].srcUrl}`;
+  const IMAGE_URL = `${Config.IMAGE}/assets/images/${car.pictures[0].srcUrl}`;
   
   const handlePress = () => {
     // Replace 'TargetScreen' with the name of the screen you want to navigate to

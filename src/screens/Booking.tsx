@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet, Button, Modal } from 'react-native';
 import { RadioButton } from 'react-native-paper';
+import Config from '../config.js'
+
 
 const Booking = ({ route }) => {
   const carId = route?.params?.carId; // Optional chaining
@@ -14,7 +16,7 @@ const Booking = ({ route }) => {
   const handleConfirmBooking = async () => {
     try {
       // Make a POST request to your backend API to add the booking
-      const response = await fetch(`${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}/bookingstest`, {
+      const response = await fetch(`${Config.API}/bookingstest`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

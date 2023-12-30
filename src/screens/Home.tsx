@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import { CarCard, LoadingCard } from '../components/CarCard';
 import {theme} from '../theme/theme.js';
-import Details from './Details';
+import Config from '../config.js'
 
 const Home = ({ navigation }) => {
   const [cars, setCars] = useState([]);
   const [popularCars, setLocalCars] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_URL}/cars`);
+        const response = await fetch(`${Config.API}/cars`);
         const data = await response.json();
 
         setCars(data);
