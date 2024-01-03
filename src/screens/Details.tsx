@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Config from '../config.js'
 
 
@@ -11,6 +11,10 @@ const Details = ({ route, navigation }) => {
   const handlePress = () => {
     // Replace 'TargetScreen' with the name of the screen you want to navigate to
     navigation.navigate('Booking', { carId: car.id });
+  };
+
+  const handleBackPress = () => {
+    navigation.goBack(); // This will navigate back to the previous screen
   };
 
   const [showEngineDetails, setShowEngineDetails] = useState(false);
@@ -25,7 +29,11 @@ const Details = ({ route, navigation }) => {
   };
 
   return (
-    <View style={styles.details}>
+    <ScrollView style={styles.details}>
+        <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
+        <Text style={styles.backButtonText}>← Back</Text>
+      </TouchableOpacity>
+
         <Image source={{ uri: IMAGE_URL }} style={styles.image} />
         <Text style={styles.carInfo}>{car.name} - {car.brand}</Text>
         <Text style={styles.description}>{car.description}</Text>
@@ -62,7 +70,7 @@ const Details = ({ route, navigation }) => {
           <Text>Top Speed: {car.topSpeed} km/h</Text>
         </View>
       )}
-    </View>
+    </ScrollView>
 );
 };
 const styles = StyleSheet.create({
@@ -78,6 +86,16 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
         shadowOffset: { width: 0, height: 2 },
     },
+    backButton: {
+        marginTop: 10,
+        marginLeft: 10,
+        padding: 10,
+      },
+      backButtonText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        // Adjust the color to match your theme
+      },
     image: {
         width: '100%',
         height: 200,
