@@ -54,18 +54,12 @@ const Home = ({ navigation }) => {
 
       <Text style={theme.styles.header}>Popular Choices</Text>
       <FlatList
-        data={popularCars}
+        data={cars}
         horizontal={true}
-        renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => handleCardPress(item.id)}>
-            <CarCard car={item} />
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <CarCard car={item} onPress={() => handleCardPress(item)} />}
+        keyExtractor={item => item.id.toString()}
         showsHorizontalScrollIndicator={false}
       />
-
-      {/* Other sections and deals */}
     </ScrollView>
   );
 };
