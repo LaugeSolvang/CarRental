@@ -4,12 +4,9 @@ import { RadioButton } from 'react-native-paper';
 import Config from '../config.js'
 
 const Booking = ({ route, navigation }) => {
-    const car = route.params ? route.params.car : null;
-    
-    const IMAGE_URL = `${Config.IMAGE}/assets/images/${car.pictures[0].srcUrl}`;
-  
-  console.log(IMAGE_URL);
 
+  const car = route.params ? route.params.car : null;  
+  const IMAGE_URL = `${Config.IMAGE}/assets/images/${car.pictures[0].srcUrl}`;
   const carId = route?.params?.carId; // Optional chaining
   const [returnToSameLocation, setReturnToSameLocation] = useState(false);
   const [startDate, setStartDate] = useState('Choose Date'); // Placeholder text
