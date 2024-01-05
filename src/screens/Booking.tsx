@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, Switch, StyleSheet, Button, Modal } from 'react-native';
+import { View, Text, Switch, StyleSheet, ScrollView, Button, Modal, TouchableOpacity, Image } from 'react-native';
 import { RadioButton } from 'react-native-paper';
+<<<<<<< Updated upstream
+=======
+import Config from '../config.js'
 
-const Booking = ({ route }) => {
+const Booking = ({ route, navigation }) => {
+    const car = route.params ? route.params.car : null;
+    
+  const IMAGE_URL = `${Config.IMAGE}/assets/images/_ca6150f6-6250-48f3-a90c-c9cb04f7dcf3.jfif`
+  
+  console.log(IMAGE_URL);
+>>>>>>> Stashed changes
+
   const carId = route?.params?.carId; // Optional chaining
   const [returnToSameLocation, setReturnToSameLocation] = useState(false);
   const [startDate, setStartDate] = useState('Choose Date'); // Placeholder text
@@ -39,19 +49,33 @@ const Booking = ({ route }) => {
     }
   };
 
-  const handleModalClose = () => {
+  const handleModalClose = ({}) => {
     setModalVisible(false);
+  };
+
+  const handleBackPress = () => {
+    navigation.goBack(); // This will navigate back to the previous screen
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.row}>
+      <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
+        <Text style={styles.backButtonText}>← Back</Text>
+      </TouchableOpacity>
+      </View>
+
+      <ScrollView style={styles.container}>
+          <Image source={{ uri: IMAGE_URL }} style={styles.image} />
+        </ScrollView>
+
+      <View style={styles.row}>
         <Text>Return to Same Location</Text>
         <Switch
           value={returnToSameLocation}
-          onValueChange={() => setReturnToSameLocation(!returnToSameLocation)}
-        />
-      </View>
+          onValueChange={() => setReturnToSameLocation(!returnToSameLocation)}/>
+        </View>
+
 
       <View style={styles.row}>
         <Text>Start Date: {startDate}</Text>
@@ -94,7 +118,7 @@ const Booking = ({ route }) => {
       <Modal visible={isModalVisible} onRequestClose={handleModalClose}>
         <View style={styles.modalContainer}>
           <Text>Booking Successful!</Text>
-          <Button title="Close" onPress={handleModalClose} />
+          <Button title="Return to Overview" onPress={() => navigation.navigate('Overview')} />
         </View>
       </Modal>
     </View>
@@ -121,6 +145,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  backButton: {
+    marginTop: 10,
+    marginLeft: 10,
+    padding: 10,
+  },
+  backButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    // Adjust the color to match your theme
+  },
+  image: {
+    width: '100%',
+    height: 200,
+    borderRadius: 10,
+}
 });
 
 export default Booking;

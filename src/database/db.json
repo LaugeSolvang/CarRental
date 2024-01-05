@@ -158,6 +158,7 @@
       "endDate": "2023-11-24T11:43:16.797Z",
       "isDriverAgeSlider": false,
       "purpose": "",
+<<<<<<< Updated upstream
       "id": "wbPUQki"
     },
     {
@@ -167,6 +168,82 @@
       "isDriverAgeSlider": false,
       "purpose": "",
       "id": "UV3e_EP"
+=======
+      "carId": 6,
+      "id": 4
+    },
+    {
+      "returnToSameLocation": false,
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
+      "isDriverAgeSlider": true,
+      "purpose": "Business",
+      "carId": 1,
+      "id": 5
+    },
+    {
+      "returnToSameLocation": false,
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
+      "isDriverAgeSlider": true,
+      "purpose": "Business",
+      "carId": 1,
+      "id": 6
+    },
+    {
+      "returnToSameLocation": false,
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
+      "isDriverAgeSlider": true,
+      "purpose": "Business",
+      "carId": 1,
+      "id": 7
+    },
+    {
+      "returnToSameLocation": false,
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
+      "isDriverAgeSlider": false,
+      "purpose": "",
+      "carId": 1,
+      "id": 8
+    },
+    {
+      "returnToSameLocation": false,
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
+      "isDriverAgeSlider": false,
+      "purpose": "",
+      "carId": 1,
+      "id": 9
+    },
+    {
+      "returnToSameLocation": false,
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
+      "isDriverAgeSlider": false,
+      "purpose": "",
+      "carId": 1,
+      "id": 10
+    },
+    {
+      "returnToSameLocation": false,
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
+      "isDriverAgeSlider": false,
+      "purpose": "",
+      "carId": 1,
+      "id": 11
+    },
+    {
+      "returnToSameLocation": false,
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
+      "isDriverAgeSlider": false,
+      "purpose": "",
+      "carId": 1,
+      "id": 12
+>>>>>>> Stashed changes
     },
     {
       "returnToSameLocation": true,
@@ -174,7 +251,30 @@
       "endDate": "Choose Date",
       "isDriverAgeSlider": true,
       "purpose": "Business",
+<<<<<<< Updated upstream
       "id": "TI4dhRc"
+=======
+      "carId": 1,
+      "id": 13
+    },
+    {
+      "returnToSameLocation": true,
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
+      "isDriverAgeSlider": true,
+      "purpose": "Business",
+      "carId": 1,
+      "id": 14
+    },
+    {
+      "returnToSameLocation": false,
+      "startDate": "Choose Date",
+      "endDate": "Choose Date",
+      "isDriverAgeSlider": false,
+      "purpose": "",
+      "carId": 1,
+      "id": 15
+>>>>>>> Stashed changes
     }
   ],
   "cars": [
