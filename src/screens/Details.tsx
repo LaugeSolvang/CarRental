@@ -10,7 +10,7 @@ const Details = ({ route, navigation }) => {
   
   const handlePress = () => {
     // Replace 'TargetScreen' with the name of the screen you want to navigate to
-    navigation.navigate('Booking', { carId: car.id });
+    navigation.navigate('Booking', { car: car });
   };
 
   const handleBackPress = () => {

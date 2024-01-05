@@ -6,7 +6,7 @@ import Config from '../config.js'
 const Booking = ({ route, navigation }) => {
     const car = route.params ? route.params.car : null;
     
-  const IMAGE_URL = `${Config.IMAGE}/assets/images/_ca6150f6-6250-48f3-a90c-c9cb04f7dcf3.jfif`
+    const IMAGE_URL = `${Config.IMAGE}/assets/images/${car.pictures[0].srcUrl}`;
   
   console.log(IMAGE_URL);
 
