@@ -21,7 +21,7 @@ const Booking = ({ route, navigation }) => {
   const handleConfirmBooking = async () => {
     try {
       // Make a POST request to your backend API to add the booking
-      const response = await fetch(`${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}/bookings`, {
+      const response = await fetch(`${Config.API}/bookingstest`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
