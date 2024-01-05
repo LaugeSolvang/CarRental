@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet, ScrollView, Button, Modal, TouchableOpacity, Image } from 'react-native';
 import { RadioButton } from 'react-native-paper';
-<<<<<<< Updated upstream
-=======
 import Config from '../config.js'
 
 const Booking = ({ route, navigation }) => {
@@ -11,7 +9,6 @@ const Booking = ({ route, navigation }) => {
   const IMAGE_URL = `${Config.IMAGE}/assets/images/_ca6150f6-6250-48f3-a90c-c9cb04f7dcf3.jfif`
   
   console.log(IMAGE_URL);
->>>>>>> Stashed changes
 
   const carId = route?.params?.carId; // Optional chaining
   const [returnToSameLocation, setReturnToSameLocation] = useState(false);
