@@ -2,21 +2,26 @@ import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet, ScrollView, Button, Modal, TouchableOpacity, Image, TextInput, Alert } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import Config from '../config.js'
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 
 const Booking = ({ route, navigation }) => {
 
   const car = route.params ? route.params.car : null;  
   const IMAGE_URL = `${Config.IMAGE}/assets/images/${car.pictures[0].srcUrl}`;
-  const carId = route?.params?.carId; // Optional chaining
-  const [pickupLocation] = useState(false);
-  const [startDate, setStartDate] = useState(); 
-  const [endDate, setEndDate] = useState(); 
+  const carId = car.id; // Optional chaining
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [showStartDatePicker, setShowStartDatePicker] = useState(false);
+  const [showEndDatePicker, setShowEndDatePicker] = useState(false);
   const [isDriverAgeSlider, setIsDriverAgeSlider] = useState(false);
   const [purpose, setPurpose] = useState();
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const [selectedLocation, setSelectedLocation] = useState(''); // State to track selected location
-  const [isLocationModalVisible, setLocationModalVisible] = useState(false);
+  const [pickupLocation, setPickupLocation] = useState(''); // State for pickup location
+  const [dropoffLocation, setDropoffLocation] = useState(''); // State for drop-off location
+  const [isLocationModalVisible, setLocationModalVisible] = useState(false); // Modal visibility for pickup location
+  const [isDropoffLocationModalVisible, setDropoffLocationModalVisible] = useState(false); // Modal visibility for drop-off location
 
   const locations = [
     { key: 'location1', label: 'Odense' },
@@ -25,8 +30,37 @@ const Booking = ({ route, navigation }) => {
   ];
 
 
+  const onStartDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || startDate;
+    setShowStartDatePicker(false);
+    setStartDate(currentDate);
+  };
+  
+  const onEndDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || endDate;
+    setShowEndDatePicker(false);
+    setEndDate(currentDate);
+  };
+  
+  const handleDropoffLocationPress = () => {
+    setDropoffLocationModalVisible(true);
+  };
+
+  const handleDropoffLocationSelect = (location) => {
+    setDropoffLocation(location.label);
+    setDropoffLocationModalVisible(false);
+  };
+
+  const handleLocationSelect = (location) => {
+    setPickupLocation(location.label); // Update pickup location
+    setLocationModalVisible(false);
+  };
+  
 
   const handleConfirmBooking = async () => {
+    const formattedStartDate = startDate.toISOString();
+    const formattedEndDate = endDate.toISOString();
+
     try {
       // Make a POST request to your backend API to add the booking
       const response = await fetch(`${Config.API}/bookingstest`, {
@@ -36,8 +70,9 @@ const Booking = ({ route, navigation }) => {
         },
         body: JSON.stringify({
           pickupLocation,
-          startDate,
-          endDate,
+          dropoffLocation, 
+          formattedStartDate,
+          formattedEndDate,
           isDriverAgeSlider,
           purpose,
           carId,
@@ -66,14 +101,10 @@ const Booking = ({ route, navigation }) => {
     navigation.goBack(); // This will navigate back to the previous screen
   };
 
-  const handlePickupLocationPress = () => {
+    const handlePickupLocationPress = () => {
     setLocationModalVisible(true);
   };
 
-  const handleLocationSelect = (location) => {
-    setSelectedLocation(location.label);
-    setLocationModalVisible(false);
-  };
 
   return (
     <View style={styles.container}>
@@ -90,7 +121,7 @@ const Booking = ({ route, navigation }) => {
         <View style={styles.row}>
         <Text>Please choose pickup location:</Text>
         <TouchableOpacity onPress={handlePickupLocationPress}>
-          <Text>{selectedLocation || 'Choose Location'}</Text>
+          <Text>{pickupLocation || 'Choose Location'}</Text>
         </TouchableOpacity>
       </View>
 
@@ -109,24 +140,57 @@ const Booking = ({ route, navigation }) => {
       </Modal>
 
       <View style={styles.row}>
-        <Text>Start Date:</Text>
-        <TextInput
-          style={styles.dateInput}
-          placeholder="Type Date"
-          value={startDate}
-          onChangeText={(text) => setStartDate(text)}
-        />
+        <Text>Please choose drop-off location:</Text>
+        <TouchableOpacity onPress={handleDropoffLocationPress}>
+          <Text>{dropoffLocation || 'Choose Location'}</Text>
+        </TouchableOpacity>
       </View>
 
+      {/* Modal for selecting drop-off location */}
+      <Modal visible={isDropoffLocationModalVisible} onRequestClose={() => setDropoffLocationModalVisible(false)}>
+        <View style={styles.locationModal}>
+          <Text>Select Drop-off Location</Text>
+          {locations.map((location) => (
+            <TouchableOpacity key={location.key} onPress={() => handleDropoffLocationSelect(location)}>
+              <Text>{location.label}</Text>
+            </TouchableOpacity>
+          ))}
+          <TouchableOpacity onPress={() => setDropoffLocationModalVisible(false)}>
+            <Text>Close</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+
       <View style={styles.row}>
-        <Text>End Date:</Text>
-        <TextInput
-          style={styles.dateInput}
-          placeholder="Type Date"
-          value={endDate}
-          onChangeText={(text) => setEndDate(text)}
-        />
-      </View>
+  <Text>Start Date:</Text>
+  <TouchableOpacity onPress={() => setShowStartDatePicker(true)}>
+    <Text>{startDate.toISOString()}</Text>
+  </TouchableOpacity>
+</View>
+{showStartDatePicker && (
+  <DateTimePicker
+    value={startDate}
+    mode="date"
+    display="default"
+    onChange={onStartDateChange}
+  />
+)}
+
+<View style={styles.row}>
+  <Text>End Date:</Text>
+  <TouchableOpacity onPress={() => setShowEndDatePicker(true)}>
+    <Text>{endDate.toISOString()}</Text>
+  </TouchableOpacity>
+</View>
+{showEndDatePicker && (
+  <DateTimePicker
+    value={endDate}
+    mode="date"
+    display="default"
+    onChange={onEndDateChange}
+  />
+)}
+
     
       <View style={styles.row}>
         <Text>Driver Age (25-70)</Text>
