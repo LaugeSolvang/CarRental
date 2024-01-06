@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity, Alert } from 'react-native';
 import NavigationPrompt from '../components/NavigationPromt';
 import {theme} from '../theme/theme.js';
+import Config from '../config.js';
 
 const SignUp = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   
-    const API_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}`;
   
     const handleSignUp = async () => {
       // Perform input validation as needed here (e.g., check that email and password are not empty)
@@ -18,7 +18,7 @@ const SignUp = ({ navigation }) => {
       }
 
       try {
-        const usersResponse = await fetch(`${API_URL}/users`);
+        const usersResponse = await fetch(`${Config.API}/users`);
         const users = await usersResponse.json();
         const emailExists = users.some(user => user.email === email);
     
@@ -33,7 +33,7 @@ const SignUp = ({ navigation }) => {
       }
 
       try {
-        const response = await fetch(`${API_URL}/users`, {
+        const response = await fetch(`${Config.API}/users`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

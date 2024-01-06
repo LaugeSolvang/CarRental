@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Image, Alert, TouchableOpacity } from 'react-native';
 import {theme} from '../theme/theme.js';
 import NavigationPrompt from '../components/NavigationPromt';
-
+import Config from '../config.js';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -19,7 +19,7 @@ const Login = ({ navigation }) => {
   
     // Here we call the API to get the list of users
     try {
-      const response = await fetch(`${API_URL}/users`);
+      const response = await fetch(`${Config.API}/users`);
       const users = await response.json();
   
       // Here we check if the user exists
