@@ -103,28 +103,3 @@ const styles = StyleSheet.create({
 
 
 export default Search;
-
-
-//const API_ENDPOINT = 'https://randomuser.me/api/?results=30';
-
-    //fetchData(API_ENDPOINT)
-
- // const fetchData = async(url) => {
-   // try {
-     // const response = await fetch(url);
-      //const json = await response.json();
-      //setData(json.results);
-
-      //console.log(json.results);
-
-      //setIsLoading(false);
-    //} catch(error) {
-      //setError(error);
-      //console.log(error)
-      //setIsLoading(false);
-    //}
-  //}
-
- //<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
- //<Text>Overview Content</Text>
- //</View>
