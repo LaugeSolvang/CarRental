@@ -1,105 +1,107 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, TextInput } from 'react-native-paper';
-import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { CarCard, LoadingCard } from '../components/CarCard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Config from '../config.js';
 
 const Search: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [data, setData] = useState<any[]>([]); // Use any[] type for data
-  const [error, setError] = useState<any>(null); // Use any type for error
-  const [fullData, setFullData] = useState<any[]>([]); // Use any[] type for fullData
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [data, setData] = useState<any[]>([]);
+  const [error, setError] = useState<any>(null);
+  const [fullData, setFullData] = useState<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchData(require('C:\\Users\\mateo\\Documents\\SDU Denmark\\Mobile Software Development\\CarRental\\CarRental-1\\src\\database\\db.json'));
-  }, []);
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
 
-  const fetchData = (localData: any) => { // Add type annotation for localData
-    try {
-      setData(localData.bookings);
-      setFullData(localData.bookings);
-      setIsLoading(false);
-    } catch (error) {
-      setError(error);
-      console.log(error);
-      setIsLoading(false);
-    }
-  }; 
+        // Fetch data from AsyncStorage
+        const savedCars = await AsyncStorage.getItem('cars');
+        if (savedCars !== null) {
+          const carData = JSON.parse(savedCars);
+          setData(carData);
+          setFullData(carData);
+          setIsLoading(false);
+        } else {
+          setError('Data not found in AsyncStorage');
+          setIsLoading(false);
+        }
+      } catch (error) {
+        setError(error);
+        setIsLoading(false);
+      }
+    };
 
-  const handleSearch = (query: string) => { // Add type annotation for query
+    fetchData();
+  }, []); // Dependency array is empty to fetch data only on mount
+
+  const handleSearch = (query: string) => {
     setSearchQuery(query);
-    const filtered = fullData.filter((item) =>
-      item.model.toLowerCase().includes(query.toLowerCase()) ||
-      item.location.toLowerCase().includes(query.toLowerCase()) ||
-      item.startDate.includes(query) ||
-      item.endDate.includes(query) ||
-      item.brand.toLowerCase().includes(query.toLowerCase())
-      
+
+    // Filter data based on search query
+    const filtered = fullData.filter(
+      (item) =>
+        item.name.toLowerCase().includes(query.toLowerCase()) ||
+        item.brand.toLowerCase().includes(query.toLowerCase()) ||
+        item.description.toLowerCase().includes(query.toLowerCase())
     );
+
     setData(filtered);
   };
 
+  const handleCarPress = (car: any) => {
+    console.log('Car Pressed:', car);
+    // Implement the desired behavior when a CarCard is pressed
+    // You can navigate to a detailed view or perform any other action here
+  };
 
-  if( isLoading ) {
-    return(
-    <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-      <ActivityIndicator size={('large')} color="#5500dc" />
-    </View>
-    )
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size={'large'} color="#5500dc" />
+      </View>
+    );
   }
 
-  if( error ) {
-    return(
-    <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-      <Text>
-        Error in fetching data ... Please check your internet connection!
-      </Text>
-    </View>
-    )
+  if (error) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Error in fetching data ... Please check your internet connection!</Text>
+      </View>
+    );
   }
 
   return (
-    <View style={{flex:1,marginHorizontal:20}}>
-      <TextInput 
-        placeholder='Search' 
-        clearButtonMode='always' 
+    <View style={{ flex: 1, marginHorizontal: 20 }}>
+      <TextInput
+        placeholder="Search"
+        clearButtonMode="always"
         style={styles.searchBox}
-        autoCapitalize='none'
+        autoCapitalize="none"
         autoCorrect={false}
         value={searchQuery}
         onChangeText={(query) => handleSearch(query)}
       />
 
-<FlatList
+      <FlatList
         data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={{ padding: 10 }}>
-            <Text>{item.model}</Text>
-            <Text>Location: {item.location}</Text>
-            <Text>Start Date: {item.startDate}</Text>
-            <Text>End Date: {item.endDate}</Text>
-            <Text>{item.brand}</Text>
-
-            {/* Display other information as needed */}
-            <Image source={{ uri: item.pictures[0].srcUrl }} style={{ width: 50, height: 50 }} />
-          </View>
-        )}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <CarCard car={item} onPress={handleCarPress} />}
       />
     </View>
   );
-  
-}
+};
 
 const styles = StyleSheet.create({
   searchBox: {
-    paddingHorizontal:20,
-    paddingVertical:5, 
-    borderColor:'#ccc', 
-    borderWidth:1, 
-    borderRadius:8
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
   },
 });
-
 
 export default Search;

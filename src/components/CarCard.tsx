@@ -4,11 +4,10 @@ import Config from '../config.js'
 
 
 const CarCard = ({ car, onPress }) => {
-
   const IMAGE_URL = `${Config.IMAGE}/assets/images/${car.pictures[0].srcUrl}`;
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={() => onPress(car)}>
       <View style={styles.card}>
         <Image source={{ uri: IMAGE_URL }} style={styles.image} />
         <Text style={styles.carInfo}>
