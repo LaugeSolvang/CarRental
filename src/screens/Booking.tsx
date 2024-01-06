@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Switch, StyleSheet, ScrollView, Button, Modal, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Switch, StyleSheet, ScrollView, Button, Modal, TouchableOpacity, Image, TextInput, Alert } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import Config from '../config.js'
 
@@ -8,12 +8,23 @@ const Booking = ({ route, navigation }) => {
   const car = route.params ? route.params.car : null;  
   const IMAGE_URL = `${Config.IMAGE}/assets/images/${car.pictures[0].srcUrl}`;
   const carId = route?.params?.carId; // Optional chaining
-  const [returnToSameLocation, setReturnToSameLocation] = useState(false);
-  const [startDate, setStartDate] = useState('Choose Date'); // Placeholder text
-  const [endDate, setEndDate] = useState('Choose Date'); // Placeholder text
+  const [pickupLocation] = useState(false);
+  const [startDate, setStartDate] = useState(); 
+  const [endDate, setEndDate] = useState(); 
   const [isDriverAgeSlider, setIsDriverAgeSlider] = useState(false);
-  const [purpose, setPurpose] = useState('');
+  const [purpose, setPurpose] = useState();
   const [isModalVisible, setModalVisible] = useState(false);
+
+  const [selectedLocation, setSelectedLocation] = useState(''); // State to track selected location
+  const [isLocationModalVisible, setLocationModalVisible] = useState(false);
+
+  const locations = [
+    { key: 'location1', label: 'Odense' },
+    { key: 'location2', label: 'Copenhagen' },
+    { key: 'location3', label: 'Aarhus' },
+  ];
+
+
 
   const handleConfirmBooking = async () => {
     try {
@@ -24,7 +35,7 @@ const Booking = ({ route, navigation }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          returnToSameLocation,
+          pickupLocation,
           startDate,
           endDate,
           isDriverAgeSlider,
@@ -33,10 +44,14 @@ const Booking = ({ route, navigation }) => {
         }),
       });
 
-      if (response.ok) {
+      if (response.ok && isDriverAgeSlider ) {
         setModalVisible(true);
       } else {
-        console.error('Booking failed:', response.status, response.statusText);
+        Alert.alert(
+          'Booking Failed',
+          'You need to be 25 or older, to book a car',
+          [{ text: 'OK'}]
+        );
       }
     } catch (error) {
       console.error('Error confirming booking:', error);
@@ -51,6 +66,15 @@ const Booking = ({ route, navigation }) => {
     navigation.goBack(); // This will navigate back to the previous screen
   };
 
+  const handlePickupLocationPress = () => {
+    setLocationModalVisible(true);
+  };
+
+  const handleLocationSelect = (location) => {
+    setSelectedLocation(location.label);
+    setLocationModalVisible(false);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.row}>
@@ -63,22 +87,47 @@ const Booking = ({ route, navigation }) => {
           <Image source={{ uri: IMAGE_URL }} style={styles.image} />
         </ScrollView>
 
-      <View style={styles.row}>
-        <Text>Return to Same Location</Text>
-        <Switch
-          value={returnToSameLocation}
-          onValueChange={() => setReturnToSameLocation(!returnToSameLocation)}/>
+        <View style={styles.row}>
+        <Text>Please choose pickup location:</Text>
+        <TouchableOpacity onPress={handlePickupLocationPress}>
+          <Text>{selectedLocation || 'Choose Location'}</Text>
+        </TouchableOpacity>
+      </View>
+
+      <Modal visible={isLocationModalVisible} onRequestClose={() => setLocationModalVisible(false)}>
+        <View style={styles.locationModal}>
+          <Text>Select Location</Text>
+          {locations.map((location) => (
+            <TouchableOpacity key={location.key} onPress={() => handleLocationSelect(location)}>
+              <Text>{location.label}</Text>
+            </TouchableOpacity>
+          ))}
+          <TouchableOpacity onPress={() => setLocationModalVisible(false)}>
+            <Text>Close</Text>
+          </TouchableOpacity>
         </View>
-
+      </Modal>
 
       <View style={styles.row}>
-        <Text>Start Date: {startDate}</Text>
+        <Text>Start Date:</Text>
+        <TextInput
+          style={styles.dateInput}
+          placeholder="Type Date"
+          value={startDate}
+          onChangeText={(text) => setStartDate(text)}
+        />
       </View>
 
       <View style={styles.row}>
-        <Text>End Date: {endDate}</Text>
+        <Text>End Date:</Text>
+        <TextInput
+          style={styles.dateInput}
+          placeholder="Type Date"
+          value={endDate}
+          onChangeText={(text) => setEndDate(text)}
+        />
       </View>
-
+    
       <View style={styles.row}>
         <Text>Driver Age (25-70)</Text>
         <Switch
@@ -153,6 +202,19 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     borderRadius: 10,
+},
+locationModal: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+dateInput: {
+  flex: 1,
+  height: 40,
+  borderColor: 'gray',
+  borderWidth: 1,
+  marginLeft: 10,
+  paddingHorizontal: 10,
 }
 });
 
