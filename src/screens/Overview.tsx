@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import BookingCard from '../components/BookingCard';
 import {theme} from '../theme/theme.js';
+import Config from '../config.js'
 
 
 const Overview = () => {
@@ -11,8 +13,6 @@ const Overview = () => {
     pastRentals: []
   });
   const [loading, setLoading] = useState(true);
-
-  const API_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}`;
 
   const renderContent = ({ item }) => {
     if (item.title) {
@@ -29,17 +29,17 @@ const Overview = () => {
     let pastRentals = [];
   
     bookings.forEach(booking => {
-      const pickupDate = new Date(booking.startDate);
-      const dropoffDate = new Date(booking.endDate);
-      if (pickupDate <= now && dropoffDate >= now) {
+      const startDate = new Date(booking.formattedStartDate);
+      const endDate = new Date(booking.formattedEndDate);
+      if (startDate <= now && endDate >= now) {
         currentRentals.push(booking);
-      } else if (pickupDate > now) {
+      } else if (startDate > now) {
         futureRentals.push(booking);
       } else {
         pastRentals.push(booking);
       }
     });
-  
+    
     // Sorting each array if needed, e.g., by date
     currentRentals.sort((a, b) => new Date(a.pickup) - new Date(b.pickup));
     futureRentals.sort((a, b) => new Date(a.pickup) - new Date(b.pickup));
@@ -48,8 +48,9 @@ const Overview = () => {
     return { currentRentals, futureRentals, pastRentals };
   };
   
-  useEffect(() => {
-    fetch(`${API_URL}/bookings`)
+  const fetchData = () => {
+    setLoading(true);
+    fetch(`${Config.API}/bookingstest`)
       .then(response => response.json())
       .then(data => {
         const { currentRentals, futureRentals, pastRentals } = categorizeBookings(data);
@@ -60,7 +61,13 @@ const Overview = () => {
         console.error('Error fetching data:', error);
         setLoading(false);
       });
-  }, []);
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchData();
+    }, [])
+  );
   
 
   if (loading) {

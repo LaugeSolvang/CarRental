@@ -6,7 +6,6 @@ import Overview from '../screens/Overview';
 import Settings from '../screens/Settings';
 import Search from '../screens/Search';
 
-
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator: React.FC = () => {

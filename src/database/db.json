@@ -1,109 +1,53 @@
 {
-    "bookings": [
-        {
-          "id": "1",
-          "model": "Toyota Camry 2020 4WD",
-          "pictures": [
-            {
-              "id": 1,
-              "srcUrl": "_145748e3-eab5-4eb6-a66e-cff030110f6c.jfif",
-              "alt": "Nice image",
-              "created_at": "2023-10-06T12:00:00.000Z",
-              "updated_at": "2023-10-06T12:00:00.000Z"
-            }
-          ],
-          "startDate": "2023-10-13T12:30:00Z",
-          "endDate": "2023-10-27T09:30:00Z",
-          "location": "Odense"
-        },
-        {
-          "id": "2",
-          "model": "Ford Model",
-          "pictures": [
-            {
-              "id": 2,
-              "srcUrl": "_b1a9360d-7688-43b4-b132-68ee1f0ba190.jfif",
-              "alt": "Nice image of place",
-              "created_at": "2023-10-06T12:00:00.000Z",
-              "updated_at": "2023-10-06T12:00:00.000Z"
-            }
-          ],
-          "startDate": "2023-10-13T12:30:00Z",
-          "endDate": "2023-10-27T09:30:00Z",
-          "location": "Odense"
-        },
-        {
-          "id": "3",
-          "model": "Ford Model",
-          "pictures": [
-            {
-              "id": 3,
-              "srcUrl": "_ca6150f6-6250-48f3-a90c-c9cb04f7dcf3.jfif",
-              "alt": "Car Image 3",
-              "created_at": "2023-10-06T12:00:00.000Z",
-              "updated_at": "2023-10-06T12:00:00.000Z"
-            }
-          ],
-          "startDate": "2023-10-13T12:30:00Z",
-          "endDate": "2024-11-27T09:30:00Z",
-          "location": "Odense"
-        },
-        {
-            "id": "4",
-            "model": "Toyota Camry 2020 4WD",
-            "pictures": [
-              {
-                "id": 1,
-                "srcUrl": "_145748e3-eab5-4eb6-a66e-cff030110f6c.jfif",
-                "alt": "Nice image",
-                "created_at": "2023-10-06T12:00:00.000Z",
-                "updated_at": "2023-10-06T12:00:00.000Z"
-              }
-            ],
-            "startDate": "2023-10-13T12:30:00Z",
-            "endDate": "2023-10-27T09:30:00Z",
-            "location": "Odense"
-          },
-          {
-            "id": "5",
-            "model": "Toyota Camry 2020 4WD",
-            "pictures": [
-              {
-                "id": 1,
-                "srcUrl": "_145748e3-eab5-4eb6-a66e-cff030110f6c.jfif",
-                "alt": "Nice image",
-                "created_at": "2023-10-06T12:00:00.000Z",
-                "updated_at": "2023-10-06T12:00:00.000Z"
-              }
-            ],
-            "startDate": "2023-12-13T12:30:00Z",
-            "endDate": "2023-12-27T09:30:00Z",
-            "location": "Odense"
-          },
-          {
-            "id": "6",
-            "model": "Ford Model",
-            "pictures": [
-              {
-                "id": 3,
-                "srcUrl": "_ca6150f6-6250-48f3-a90c-c9cb04f7dcf3.jfif",
-                "alt": "Car Image 3",
-                "created_at": "2023-10-06T12:00:00.000Z",
-                "updated_at": "2023-10-06T12:00:00.000Z"
-              }
-            ],
-            "startDate": "2023-10-13T12:30:00Z",
-            "endDate": "2024-11-27T09:30:00Z",
-            "location": "Odense"
-          }
-      ],
+  "bookingstest": [
+    {
+      "pickupLocation": "Copenhagen",
+      "dropoffLocation": "Aarhus",
+      "formattedStartDate": "2023-08-02T12:47:11.365Z",
+      "formattedEndDate": "2024-01-12T13:47:11.365Z",
+      "isDriverAgeSlider": true,
+      "purpose": "Personal",
+      "carId": 1,
+      "id": 1
+    },
+    {
+      "pickupLocation": "Aarhus",
+      "dropoffLocation": "Odense",
+      "formattedStartDate": "2024-01-01T13:50:21.429Z",
+      "formattedEndDate": "2024-01-03T13:50:21.429Z",
+      "isDriverAgeSlider": true,
+      "purpose": "Personal",
+      "carId": 2,
+      "id": 2
+    },
+    {
+      "pickupLocation": "Aarhus",
+      "dropoffLocation": "Copenhagen",
+      "formattedStartDate": "2024-01-05T13:51:18.815Z",
+      "formattedEndDate": "2024-01-26T13:51:18.815Z",
+      "isDriverAgeSlider": true,
+      "purpose": "Business",
+      "carId": 3,
+      "id": 3
+    },
+    {
+      "pickupLocation": "Aarhus",
+      "dropoffLocation": "Odense",
+      "formattedStartDate": "2024-01-10T13:55:06.907Z",
+      "formattedEndDate": "2024-01-24T13:55:06.907Z",
+      "isDriverAgeSlider": true,
+      "purpose": "Business",
+      "carId": 1,
+      "id": 4
+    }
+  ],
   "cars": [
     {
       "id": 1,
       "engine": {
         "id": 1,
         "horsePower": 100,
-        "cylinders": 8,
+        "cylinders": 12,
         "volume": 1000,
         "maxRPM": 8000,
         "created_at": "2023-10-06T12:00:00.000Z",
@@ -113,7 +57,7 @@
       "pictures": [
         {
           "id": 1,
-          "srcUrl": "_145748e3-eab5-4eb6-a66e-cff030110f6c.jfif",
+          "srcUrl": "b35704c8-9816-498e-874f-8a826993a1d9.jpeg",
           "alt": "Nice image",
           "created_at": "2023-10-06T12:00:00.000Z",
           "updated_at": "2023-10-06T12:00:00.000Z"
@@ -154,7 +98,7 @@
       "pictures": [
         {
           "id": 2,
-          "srcUrl": "_b1a9360d-7688-43b4-b132-68ee1f0ba190.jfif",
+          "srcUrl": "dcaa60e7-1ac2-4096-80ea-15ee4a50aae8.jpeg",
           "alt": "Nice image og place",
           "created_at": "2023-10-06T12:00:00.000Z",
           "updated_at": "2023-10-06T12:00:00.000Z"
@@ -185,7 +129,7 @@
       "engine": {
         "id": 3,
         "horsePower": 250,
-        "cylinders": 6,
+        "cylinders": "None",
         "volume": 1200,
         "maxRPM": 7500,
         "created_at": "2023-10-06T12:00:00.000Z",
@@ -218,6 +162,170 @@
       "doorCount": 4,
       "manufacturingYear": 2023,
       "topSpeed": 150,
+      "created_at": "2023-10-06T12:00:00.000Z",
+      "updated_at": "2023-10-06T12:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "engine": {
+        "id": 4,
+        "horsePower": 761,
+        "cylinders": 8,
+        "volume": 1200,
+        "maxRPM": 16000,
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "name": "Demo car 4",
+      "pictures": [
+        {
+          "id": 4,
+          "srcUrl": "07f2ade2-8437-49bd-aef0-1bca2065cd6d.jpeg",
+          "alt": "Car Image 4",
+          "created_at": "2023-10-06T12:00:00.000Z",
+          "updated_at": "2023-10-06T12:00:00.000Z"
+        }
+      ],
+      "location": {
+        "id": 4,
+        "name": "København",
+        "address": "Banegården",
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "brand": "Porsche",
+      "weight": 2000,
+      "acceleration": 2.8,
+      "wheelCount": 4,
+      "description": "Eco-friendly electric car",
+      "type": "Electric",
+      "price": 110000,
+      "doorCount": 4,
+      "manufacturingYear": 2023,
+      "topSpeed": 300,
+      "created_at": "2023-10-06T12:00:00.000Z",
+      "updated_at": "2023-10-06T12:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "engine": {
+        "id": 5,
+        "horsePower": 600,
+        "cylinders": 8,
+        "volume": 1200,
+        "maxRPM": 6500,
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "name": "Demo car 5",
+      "pictures": [
+        {
+          "id": 5,
+          "srcUrl": "4b18b33f-2709-4682-8910-26c37090397e.jpeg",
+          "alt": "Car Image 5",
+          "created_at": "2023-10-06T12:00:00.000Z",
+          "updated_at": "2023-10-06T12:00:00.000Z"
+        }
+      ],
+      "location": {
+        "id": 5,
+        "name": "København",
+        "address": "Banegården",
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "brand": "Mercedes",
+      "weight": 1700,
+      "acceleration": 3.2,
+      "wheelCount": 4,
+      "description": "Sports car",
+      "type": "Petrol",
+      "price": 113000,
+      "doorCount": 4,
+      "manufacturingYear": 2023,
+      "topSpeed": 300,
+      "created_at": "2023-10-06T12:00:00.000Z",
+      "updated_at": "2023-10-06T12:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "engine": {
+        "id": 6,
+        "horsePower": 600,
+        "cylinders": 8,
+        "volume": 1200,
+        "maxRPM": 7000,
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "name": "Demo car 6",
+      "pictures": [
+        {
+          "id": 6,
+          "srcUrl": "76956a57-5d9c-49a9-9da5-0becefcb4f50.jpeg",
+          "alt": "Car Image 6",
+          "created_at": "2023-10-06T12:00:00.000Z",
+          "updated_at": "2023-10-06T12:00:00.000Z"
+        }
+      ],
+      "location": {
+        "id": 6,
+        "name": "Aarhus",
+        "address": "Banegården",
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "brand": "BMW",
+      "weight": 1800,
+      "acceleration": 3.3,
+      "wheelCount": 4,
+      "description": "Sports car",
+      "type": "Petrol",
+      "price": 117000,
+      "doorCount": 4,
+      "manufacturingYear": 2023,
+      "topSpeed": 300,
+      "created_at": "2023-10-06T12:00:00.000Z",
+      "updated_at": "2023-10-06T12:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "engine": {
+        "id": 7,
+        "horsePower": 350,
+        "cylinders": 6,
+        "volume": 1200,
+        "maxRPM": 6500,
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "name": "Demo car 7",
+      "pictures": [
+        {
+          "id": 7,
+          "srcUrl": "e1ae7971-0238-4835-9412-96e971cec5ce.jpeg",
+          "alt": "Car Image 7",
+          "created_at": "2023-10-06T12:00:00.000Z",
+          "updated_at": "2023-10-06T12:00:00.000Z"
+        }
+      ],
+      "location": {
+        "id": 7,
+        "name": "Odense",
+        "address": "Banegården",
+        "created_at": "2023-10-06T12:00:00.000Z",
+        "updated_at": "2023-10-06T12:00:00.000Z"
+      },
+      "brand": "Volkswagen",
+      "weight": 1500,
+      "acceleration": 5.5,
+      "wheelCount": 4,
+      "description": "Sports car",
+      "type": "Petrol",
+      "price": 50000,
+      "doorCount": 4,
+      "manufacturingYear": 2022,
+      "topSpeed": 300,
       "created_at": "2023-10-06T12:00:00.000Z",
       "updated_at": "2023-10-06T12:00:00.000Z"
     }
