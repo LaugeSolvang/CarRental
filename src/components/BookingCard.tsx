@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import Config from '../config.js'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const BookingCard = ({ booking }) => {
-  const IMAGE_URL = `${Config.IMAGE}/assets/images/${booking.pictures[0].srcUrl}`;
+  const [carDetails, setCarDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchCarDetails = async () => {
+      const details = await getCarDetails(booking.carId);
+      setCarDetails(details);
+    };
+
+    fetchCarDetails();
+  }, [booking.carId]);
+
+  if (!carDetails) {
+    return <Text>Loading car details...</Text>; // Or any other loading placeholder
+  }
+
+  const IMAGE_URL = carDetails ? `${Config.IMAGE}/assets/images/${carDetails.pictures[0].srcUrl}` : 'default_image_url';
 
   const dateTimeOptions = {
     year: 'numeric', 
@@ -19,22 +35,37 @@ const BookingCard = ({ booking }) => {
     <View style={styles.card}>
       <Image source={{ uri: IMAGE_URL }} style={styles.image} />
       <View style={styles.textContainer}>
-        <Text style={styles.carModel}>{booking.model}</Text>
+        <Text style={styles.carModel}>{carDetails.name} - {carDetails.brand}</Text>
         <View style={styles.dateGroup}>
           <Text style={styles.startDate}>
-            {new Date(booking.startDate).toLocaleString([], dateTimeOptions)}
+            {new Date(booking.formattedStartDate).toLocaleString([], dateTimeOptions)}
           </Text>
-          <Text style={styles.location}>{booking.location}</Text>
+          <Text style={styles.location}>{booking.pickupLocation}</Text>
         </View>
         <View style={styles.dateGroup}>
           <Text style={styles.endDate}>
-            {new Date(booking.endDate).toLocaleString([], dateTimeOptions)}
+            {new Date(booking.formattedEndDate).toLocaleString([], dateTimeOptions)}
           </Text>
-          <Text style={styles.location}>{booking.location}</Text>
+          <Text style={styles.location}>{booking.dropoffLocation}</Text>
         </View>
       </View>
     </View>
   );
+};
+
+const getCarDetails = async (carId) => {
+  try {
+    const savedCars = await AsyncStorage.getItem('cars');
+    const cars = savedCars != null ? JSON.parse(savedCars) : [];
+
+    // Find the car with the matching ID
+    const carDetails = cars.find(car => car.id === carId);
+    return carDetails;
+
+  } catch (error) {
+    console.error('Error fetching car details: ', error);
+    return null; // or you could return a default object or handle the error as needed
+  }
 };
 
 
