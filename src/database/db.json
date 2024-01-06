@@ -1,135 +1,43 @@
 {
-  "bookings": [
-    {
-      "id": "1",
-      "model": "Toyota Camry 2020 4WD",
-      "pictures": [
-        {
-          "id": 1,
-          "srcUrl": "_145748e3-eab5-4eb6-a66e-cff030110f6c.jfif",
-          "alt": "Nice image",
-          "created_at": "2023-10-06T12:00:00.000Z",
-          "updated_at": "2023-10-06T12:00:00.000Z"
-        }
-      ],
-      "startDate": "2023-10-13T12:30:00Z",
-      "endDate": "2023-10-27T09:30:00Z",
-      "location": "Odense"
-    },
-    {
-      "id": "2",
-      "model": "Ford Model",
-      "pictures": [
-        {
-          "id": 2,
-          "srcUrl": "_b1a9360d-7688-43b4-b132-68ee1f0ba190.jfif",
-          "alt": "Nice image of place",
-          "created_at": "2023-10-06T12:00:00.000Z",
-          "updated_at": "2023-10-06T12:00:00.000Z"
-        }
-      ],
-      "startDate": "2023-10-13T12:30:00Z",
-      "endDate": "2023-10-27T09:30:00Z",
-      "location": "Odense"
-    },
-    {
-      "id": "3",
-      "model": "Ford Model",
-      "pictures": [
-        {
-          "id": 3,
-          "srcUrl": "_ca6150f6-6250-48f3-a90c-c9cb04f7dcf3.jfif",
-          "alt": "Car Image 3",
-          "created_at": "2023-10-06T12:00:00.000Z",
-          "updated_at": "2023-10-06T12:00:00.000Z"
-        }
-      ],
-      "startDate": "2023-10-13T12:30:00Z",
-      "endDate": "2024-11-27T09:30:00Z",
-      "location": "Odense"
-    },
-    {
-      "id": "4",
-      "model": "Toyota Camry 2020 4WD",
-      "pictures": [
-        {
-          "id": 1,
-          "srcUrl": "_145748e3-eab5-4eb6-a66e-cff030110f6c.jfif",
-          "alt": "Nice image",
-          "created_at": "2023-10-06T12:00:00.000Z",
-          "updated_at": "2023-10-06T12:00:00.000Z"
-        }
-      ],
-      "startDate": "2023-10-13T12:30:00Z",
-      "endDate": "2023-10-27T09:30:00Z",
-      "location": "Odense"
-    },
-    {
-      "id": "5",
-      "model": "Toyota Camry 2020 4WD",
-      "pictures": [
-        {
-          "id": 1,
-          "srcUrl": "_145748e3-eab5-4eb6-a66e-cff030110f6c.jfif",
-          "alt": "Nice image",
-          "created_at": "2023-10-06T12:00:00.000Z",
-          "updated_at": "2023-10-06T12:00:00.000Z"
-        }
-      ],
-      "startDate": "2023-12-13T12:30:00Z",
-      "endDate": "2023-12-27T09:30:00Z",
-      "location": "Odense"
-    },
-    {
-      "id": "6",
-      "model": "Ford Model",
-      "pictures": [
-        {
-          "id": 3,
-          "srcUrl": "_ca6150f6-6250-48f3-a90c-c9cb04f7dcf3.jfif",
-          "alt": "Car Image 3",
-          "created_at": "2023-10-06T12:00:00.000Z",
-          "updated_at": "2023-10-06T12:00:00.000Z"
-        }
-      ],
-      "startDate": "2023-10-13T12:30:00Z",
-      "endDate": "2024-11-27T09:30:00Z",
-      "location": "Odense"
-    }
-  ],
   "bookingstest": [
     {
-      "returnToSameLocation": false,
-      "startDate": "Choose Date",
-      "endDate": "Choose Date",
-      "isDriverAgeSlider": false,
-      "purpose": "",
+      "pickupLocation": "Copenhagen",
+      "dropoffLocation": "Aarhus",
+      "formattedStartDate": "2023-08-02T12:47:11.365Z",
+      "formattedEndDate": "2024-01-12T13:47:11.365Z",
+      "isDriverAgeSlider": true,
+      "purpose": "Personal",
+      "carId": 1,
       "id": 1
     },
     {
-      "returnToSameLocation": false,
-      "startDate": "Choose Date",
-      "endDate": "Choose Date",
-      "isDriverAgeSlider": false,
-      "purpose": "",
+      "pickupLocation": "Aarhus",
+      "dropoffLocation": "Odense",
+      "formattedStartDate": "2024-01-01T13:50:21.429Z",
+      "formattedEndDate": "2024-01-03T13:50:21.429Z",
+      "isDriverAgeSlider": true,
+      "purpose": "Personal",
+      "carId": 2,
       "id": 2
     },
     {
-      "returnToSameLocation": false,
-      "startDate": "Choose Date",
-      "endDate": "Choose Date",
-      "isDriverAgeSlider": false,
-      "purpose": "",
-      "carId": 1,
+      "pickupLocation": "Aarhus",
+      "dropoffLocation": "Copenhagen",
+      "formattedStartDate": "2024-01-05T13:51:18.815Z",
+      "formattedEndDate": "2024-01-26T13:51:18.815Z",
+      "isDriverAgeSlider": true,
+      "purpose": "Business",
+      "carId": 3,
       "id": 3
     },
     {
-      "returnToSameLocation": false,
-      "startDate": "Choose Date",
-      "endDate": "Choose Date",
-      "isDriverAgeSlider": false,
-      "purpose": "",
-      "carId": 6,
+      "pickupLocation": "Aarhus",
+      "dropoffLocation": "Odense",
+      "formattedStartDate": "2024-01-10T13:55:06.907Z",
+      "formattedEndDate": "2024-01-24T13:55:06.907Z",
+      "isDriverAgeSlider": true,
+      "purpose": "Business",
+      "carId": 1,
       "id": 4
     }
   ],
