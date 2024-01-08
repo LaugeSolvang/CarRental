@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Image, Alert, TouchableOpacity } from 'react-native';
 import {theme} from '../theme/theme.js';
 import NavigationPrompt from '../components/NavigationPromt';
+import Config from '../config.js';
 
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  const API_URL = `${process.env.EXPO_PUBLIC_IP}${process.env.EXPO_PUBLIC_JSON_PORT}`;
+  const API_URL = Config.API;
 
   const handleLogin = async () => {
     // Input validation
