@@ -29,7 +29,7 @@ export const theme = {
       logo: {
         width: 100,
         height: 125,
-        marginBottom: 48, // Adjust as needed
+        marginBottom: 48, 
       },
       button: {
         width: '100%',
@@ -37,7 +37,7 @@ export const theme = {
         borderRadius: 5,
         alignItems: 'center',
         marginBottom: 10,
-        backgroundColor: '#5D3FD3', // Changed to purple
+        backgroundColor: '#5D3FD3', 
       },
       buttonText: {
         color: '#fff',
@@ -53,7 +53,6 @@ export const theme = {
         fontWeight: 'bold',
         margin: 8,
       },
-      // Add other common styles here
     },
   };
   
