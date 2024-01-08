@@ -3,10 +3,12 @@ import { View, Text, TextInput, Image, Alert, TouchableOpacity } from 'react-nat
 import {theme} from '../theme/theme.js';
 import NavigationPrompt from '../components/NavigationPromt';
 import Config from '../config.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
 
   const handleLogin = async () => {
     // Input validation
@@ -25,6 +27,8 @@ const Login = ({ navigation }) => {
   
       if (user) {
         console.log('Login successful:', user);
+        AsyncStorage.setItem("userID", JSON.stringify(user.id))
+        AsyncStorage.setItem("userLoggedIn", "true")
         navigation.navigate('Main', {
             screen: 'Home',
           });

@@ -1,13 +1,52 @@
-import React, { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import axios from "axios"
+import Config from '../config.js';
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
 
-  const notImplemented = () => Alert.alert('', 'Not implemented');
 
+  const notImplemented = () => Alert.alert('', 'Not implemented');
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const id = await AsyncStorage.getItem("userID")
+      if(id !== "0") {
+      await axios.get(`${Config.API}/users/${id}`)
+        .then(res=>{
+          setEmail(res.data.email)
+          setPassword(res.data.password)
+        })
+    } else {
+      setEmail(''),
+      setPassword('')
+    }
+  }
+    fetchData()
+    .catch(console.error)
+  }, [])
+
+  const handleUpdate = async () => {
+    const id = await AsyncStorage.getItem("userID")
+    if(id !== "0"){
+    axios.put(`${Config.API}/users/${id}`, {
+    email : email,
+    password : password
+  })
+  Alert.alert('Update Succesful', 'Your information has been updated successfully!');}
+  else{
+    Alert.alert('User not logged in', 'You are currently not logged in')
+  }
+}
+const logOut = async () =>{
+  AsyncStorage.setItem("userID", "0")
+  navigation.navigate('Landing')
+}
   return (
     <View style={styles.container}>
       <Image source={require('../../assets/icons/splashcar.png')} style={styles.logo} />
@@ -18,7 +57,7 @@ const Settings = () => {
         style={styles.input}
         onChangeText={setEmail}
         value={email}
-        placeholder="Email"
+        placeholder={email}
         keyboardType="email-address"
         autoCapitalize="none"
       />
@@ -27,11 +66,11 @@ const Settings = () => {
         style={styles.input}
         onChangeText={setPassword}
         value={password}
-        placeholder="password"
+        placeholder={password}
         secureTextEntry
       />
 
-      <TouchableOpacity style={styles.button} onPress={notImplemented}>
+      <TouchableOpacity style={styles.button} onPress={handleUpdate}>
         <Text style={styles.buttonText}>Update</Text>
       </TouchableOpacity>
 
@@ -39,7 +78,7 @@ const Settings = () => {
         <Text style={styles.buttonText}>Change Theme</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={notImplemented}>
+      <TouchableOpacity style={styles.button} onPress={logOut}>
         <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
     </View>
