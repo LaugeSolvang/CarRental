@@ -5,7 +5,7 @@ import { CarCard, LoadingCard } from '../components/CarCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Config from '../config.js';
 
-const Search: React.FC = () => {
+const Search: React.FC = ({navigation}) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
@@ -37,6 +37,10 @@ const Search: React.FC = () => {
     fetchData();
   }, []); // Dependency array is empty to fetch data only on mount
 
+  const handleCarPress = (car) => {
+    navigation.navigate('Details', { car: car });
+  };
+
   const handleSearch = (query: string) => {
     setSearchQuery(query);
 
@@ -49,12 +53,6 @@ const Search: React.FC = () => {
     );
 
     setData(filtered);
-  };
-
-  const handleCarPress = (car: any) => {
-    console.log('Car Pressed:', car);
-    // Implement the desired behavior when a CarCard is pressed
-    // You can navigate to a detailed view or perform any other action here
   };
 
   if (isLoading) {
@@ -85,14 +83,16 @@ const Search: React.FC = () => {
         onChangeText={(query) => handleSearch(query)}
       />
 
-      <FlatList
+        <FlatList
         data={data}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <CarCard car={item} onPress={handleCarPress} />}
+        renderItem={({ item }) => <CarCard car={item} onPress={() => handleCarPress(item)} />}
       />
     </View>
+
   );
 };
+
 
 const styles = StyleSheet.create({
   searchBox: {

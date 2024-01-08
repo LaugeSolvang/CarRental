@@ -220,12 +220,12 @@ const Booking = ({ route, navigation }) => {
         </View>
       </View>
 
-      <Button title="Confirm Booking" onPress={handleConfirmBooking} />
+      <Button title="Confirm Booking" onPress={handleConfirmBooking} color="#5D3FD3" />
 
       <Modal visible={isModalVisible} onRequestClose={handleModalClose}>
         <View style={styles.modalContainer}>
           <Text>Booking Successful!</Text>
-          <Button title="Return to Overview" onPress={() => navigation.navigate('Overview')} />
+          <Button title="Return to Overview" onPress={() => navigation.navigate('Overview')} color="#5D3FD3"/>
         </View>
       </Modal>
     </View>

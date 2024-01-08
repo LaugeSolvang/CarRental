@@ -119,14 +119,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     button: {
-        backgroundColor: '#007bff', // Bootstrap primary blue
-        padding: 15,
-        borderRadius: 5,
-        elevation: 3, // Adds shadow for Android
-        shadowColor: '#000', // Adds shadow for iOS
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        shadowOffset: { width: 0, height: 2 },
+      backgroundColor: '#5D3FD3',
+      padding: 15,
+      borderRadius: 5,
+      elevation: 3, // Adds shadow for Android
+      shadowColor: '#000', // Adds shadow for iOS
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+      shadowOffset: { width: 0, height: 2 },
     },
     buttonText: {
         color: 'white',
