@@ -17,9 +17,9 @@ const Settings: React.FC = () => {
         <Text style={styles.buttonText}>Email          </Text> 
         <TextInput style={styles.textField} onChangeText={onChangeText2} value={text2} placeholder='john@mail'/>
         <Text/>
-        <Button onPress={notImplemented} title='Change Theme'></Button>
+        <Button onPress={notImplemented} title='Change Theme' color="#5D3FD3"></Button>
         <Text/>
-        <Button onPress={notImplemented} title='Log Out'></Button>
+        <Button onPress={notImplemented} title='Log Out' color="#5D3FD3"></Button>
         
       </View>
     );
