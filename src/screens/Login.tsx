@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Image, Alert, TouchableOpacity } from 'react-native';
 import {theme} from '../theme/theme.js';
 import NavigationPrompt from '../components/NavigationPromt';
-import Config from '../config.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Config from '../config.js';
 
