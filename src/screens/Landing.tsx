@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import {theme} from '../theme/theme.js';
 import NavigationPrompt from '../components/NavigationPromt';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LandingPage = ({ navigation }) => {
+  
+  useEffect(() => {
+    const resetID = async () => {
+      AsyncStorage.setItem("userID", "0")
+    } 
+    resetID()
+      .catch(console.error);
+  }, [])
+
   return (
     <View style={theme.styles.container}>
       <Image source={require('../../assets/icons/splashcar.png')} style={theme.styles.logo} />

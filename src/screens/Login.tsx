@@ -3,13 +3,14 @@ import { View, Text, TextInput, Image, Alert, TouchableOpacity } from 'react-nat
 import {theme} from '../theme/theme.js';
 import NavigationPrompt from '../components/NavigationPromt';
 import Config from '../config.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Config from '../config.js';
 
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
-  const API_URL = Config.API;
+
 
   const handleLogin = async () => {
     // Input validation
@@ -20,7 +21,7 @@ const Login = ({ navigation }) => {
   
     // Here we call the API to get the list of users
     try {
-      const response = await fetch(`${API_URL}/users`);
+      const response = await fetch(`${Config.API}/users`);
       const users = await response.json();
   
       // Here we check if the user exists
@@ -28,6 +29,8 @@ const Login = ({ navigation }) => {
   
       if (user) {
         console.log('Login successful:', user);
+        AsyncStorage.setItem("userID", JSON.stringify(user.id))
+        AsyncStorage.setItem("userLoggedIn", "true")
         navigation.navigate('Main', {
             screen: 'Home',
           });
